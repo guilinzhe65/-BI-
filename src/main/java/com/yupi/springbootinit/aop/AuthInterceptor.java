@@ -16,6 +16,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
  * 权限校验 AOP
@@ -37,7 +39,7 @@ public class AuthInterceptor {
      * @param authCheck
      * @return
      */
-    @Around("@annotation(authCheck)")
+    @Around("@annotation(authCheck)")  //authCheck 与 下面参数名authCheck对应
     public Object doInterceptor(ProceedingJoinPoint joinPoint, AuthCheck authCheck) throws Throwable {
         String mustRole = authCheck.mustRole();
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
@@ -67,6 +69,7 @@ public class AuthInterceptor {
         }
         // 通过权限校验，放行
         return joinPoint.proceed();
+
     }
 }
 

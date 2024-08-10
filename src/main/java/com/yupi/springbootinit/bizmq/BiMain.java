@@ -24,6 +24,7 @@ public class BiMain {
             channel.exchangeDeclare(BiMqConstant.BI_EXCHANGE_NAME, "direct");
             //创建队列
             channel.queueDeclare(BiMqConstant.BI_QUEUE_NAME,true,false,false,null);
+            //绑定
             channel.queueBind(BiMqConstant.BI_QUEUE_NAME,BiMqConstant.BI_EXCHANGE_NAME,BiMqConstant.BI_ROUTING_KEY);
         }
     }
